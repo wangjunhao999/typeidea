@@ -1,11 +1,19 @@
-{% if post %}
-<h1>{{ post.title }}</h1>
-    <div>
-    <span>分类：{{ post.category.name }}</span>
-    <span>作者：{{ post.owner.name }}</span>
-    </div>
-    <hr>
-    <p>
-    {{ post.content }}
-    </p>
-{% endif %}
+{% extends 'blog/bsse.html' %}
+
+{% block title %}
+{{ post.title }}
+{% endblock %}
+
+{% block main %}
+    {% if post %}
+    <h1>{{ post.title }}</h1>
+        <div>
+        <span>作者：{{ post.owner.name }}</span>
+        <span>分类：{{ post.category_name }}</span>
+        </div>
+        <hr>
+        <p>
+        {{ post.content }}
+        </p>
+    {% endif %}
+{% endblock %}
