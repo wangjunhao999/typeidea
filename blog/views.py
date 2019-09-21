@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView
 
 from blog.models import Tag, Post, Category
-from config.models import SideBar
+from config.models import SideBar, Link
 
 
 # def post_list(request, category_id=None, tag_id=None):
@@ -89,7 +89,7 @@ class CommonViewMixin:
 #     context_object_name = 'post_list'
 #     template_name = 'blog/list.html'
 
-class IndexView(ListView, CommonViewMixin):
+class IndexView(CommonViewMixin, ListView):
     queryset = Post.latest_posts()
     paginate_by = 5
     context_object_name = 'post_list'
@@ -158,3 +158,9 @@ class AuthorView(IndexView):
         queryset = super().get_queryset()
         author_id = self.kwargs.get('owner_id')
         return queryset.filter(owner_id=author_id)
+
+
+class LinkListView(CommonViewMixin, ListView):
+    queryset = Link.objects.filter(status=Link.STATUS_NORMAL)
+    template_name = 'config/links.html'
+    context_object_name = 'link_list'
