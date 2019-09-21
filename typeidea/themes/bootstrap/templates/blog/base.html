@@ -9,6 +9,9 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
+    {% block extra_head %}
+    {% endblock %}
+
     <title>{% block title %} 首页 {% endblock %}</title>
 
     <style>
