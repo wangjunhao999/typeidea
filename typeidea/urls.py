@@ -14,8 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 import xadmin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 
 from blog.rss import LatestPostFeed
 from blog.sidemap import PostSitemap
@@ -47,5 +49,6 @@ urlpatterns = [
     re_path(r'^sitemap\.xml', sitemap_views.sitemap, {'sitemaps': {
         'posts': PostSitemap,
     }}),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'dal',
     'dal_select2',
     'ckeditor',
+    'ckeditor_uploader',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -146,9 +147,13 @@ XADMIN_FOOTER_TITLE = 'power by 1138700280@qq.com'
 CKEDITOR_CONFIGS = {
     'default': {
         'toobar': 'full',
-        'height': 300,
-        'width': 800,
+        'height': 500,
+        'width': 1024,
         'tabSpace': 4,
         'extraPlugins': 'codesnippet',
     }
 }
+
+MEDIA_URL ='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CKEDITOR_UPLOAD_PATH = 'article_images'
