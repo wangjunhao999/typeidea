@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-class BaseOwnerAdmin(admin.ModelAdmin):
+class BaseOwnerAdmin(object):
     exclude = ('owner',)
 
     def get_queryset(self, request):
