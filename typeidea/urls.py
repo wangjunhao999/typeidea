@@ -21,7 +21,7 @@ from django.urls import path, re_path, include
 from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
 
-from blog.apis import PostViewSet
+from blog.apis import PostViewSet, CategoryViewSet
 from blog.rss import LatestPostFeed
 from blog.sidemap import PostSitemap
 from blog.views import IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView, LinkListView
@@ -33,7 +33,7 @@ from django.contrib.sitemaps import views as sitemap_views
 
 router = DefaultRouter()
 router.register('post', PostViewSet, base_name='api-post')
-
+router.register('category', CategoryViewSet, base_name='api-category')
 
 urlpatterns = [
     path('admin/', xadmin.site.urls, name='xadmin'),
