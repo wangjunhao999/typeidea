@@ -125,6 +125,6 @@ class PostAdmin(BaseOwnerAdmin):
     #     js = ('https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.js',)
 
 
-@xadmin.sites.register(LogEntry)
-class LogEntryAdmin:
-    list_display = ['object_repr', 'object_id', 'action_flag', 'user', 'change_message']
+# @xadmin.sites.register(LogEntry)
+# class LogEntryAdmin:
+#     list_display = ['object_repr', 'object_id', 'action_flag', 'user', 'change_message']
