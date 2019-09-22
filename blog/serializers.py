@@ -21,6 +21,9 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['id', 'title', 'category', 'tag', 'owner', 'created_time']
+        extra_kwargs = {
+            'url': {'view_name': 'api-post-detail'}
+        }
 
 
 class PostDetailSerializer(PostSerializer):
