@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'dal',
     'dal_select2',
+    'ckeditor',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -141,3 +142,13 @@ STATICFILES_DIRS = [
 
 XADMIN_TITLE = 'Typeidea 管理后台'
 XADMIN_FOOTER_TITLE = 'power by 1138700280@qq.com'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toobar': 'full',
+        'height': 300,
+        'width': 800,
+        'tabSpace': 4,
+        'extraPlugins': 'codesnippet',
+    }
+}
