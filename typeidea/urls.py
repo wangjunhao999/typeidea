@@ -21,6 +21,7 @@ from blog.rss import LatestPostFeed
 from blog.sidemap import PostSitemap
 from blog.views import IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView, LinkListView
 from comment.views import CommentView
+from typeidea.autocomplete import CategoryAutocomplete, TagAutocomplete
 from typeidea.custom_site import custom_site
 from config.views import links
 from django.contrib.sitemaps import views as sitemap_views
@@ -28,6 +29,9 @@ from django.contrib.sitemaps import views as sitemap_views
 
 urlpatterns = [
     path('admin/', xadmin.site.urls, name='xadmin'),
+
+    path('category-autocomplete/', CategoryAutocomplete.as_view(), name='category-autocomplete'),
+    path('tag-autocomplete/', TagAutocomplete.as_view(), name='tag-autocomplete'),
 
     path('', IndexView.as_view(), name='index'),
     path('category/<int:category_id>/', CategoryView.as_view(), name='category-list'),
