@@ -18,7 +18,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path, include
+from rest_framework.documentation import include_docs_urls
+from rest_framework.routers import DefaultRouter
 
+from blog.apis import PostViewSet
 from blog.rss import LatestPostFeed
 from blog.sidemap import PostSitemap
 from blog.views import IndexView, CategoryView, TagView, PostDetailView, SearchView, AuthorView, LinkListView
@@ -27,6 +30,9 @@ from typeidea.autocomplete import CategoryAutocomplete, TagAutocomplete
 from typeidea.custom_site import custom_site
 from config.views import links
 from django.contrib.sitemaps import views as sitemap_views
+
+router = DefaultRouter()
+router.register('post', PostViewSet, base_name='api-post')
 
 
 urlpatterns = [
@@ -50,5 +56,9 @@ urlpatterns = [
         'posts': PostSitemap,
     }}),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    # path('api/post/', PostList.as_view(), name='post-list'),
+    path('api/', include(router.urls)),
+    path('api/docs/', include_docs_urls(title='typeidea apis')),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
