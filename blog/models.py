@@ -85,6 +85,7 @@ class Post(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     pv = models.PositiveIntegerField(default=1)
     uv = models.PositiveIntegerField(default=1)
+    is_md = models.BooleanField(default=False, verbose_name='markdown语法')
 
     def __str__(self):
         return self.title
@@ -94,7 +95,11 @@ class Post(models.Model):
         return ','.join(self.tag.values_list('name', flat=True))
 
     def save(self, *args, **kwargs):
-        self.content_html = mistune.markdown(self.content)
+        # self.content_html = mistune.markdown(self.content)
+        if self.is_md:
+            self.content_html = mistune.markdown(self.content)
+        else:
+            self.content_html = self.content
         super().save(*args, **kwargs)
 
     @classmethod
