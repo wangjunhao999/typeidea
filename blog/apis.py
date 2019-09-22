@@ -4,7 +4,7 @@ from rest_framework import generics
 from rest_framework import viewsets
 
 from blog.models import Post
-from blog.serializers import PostSerializer
+from blog.serializers import PostSerializer, PostDetailSerializer
 
 
 # @api_view()
@@ -19,6 +19,11 @@ from blog.serializers import PostSerializer
 #     serializer_class = PostSerializer
 
 
-class PostViewSet(viewsets.ModelViewSet):
+class PostViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=Post.STATUS_NORMAL)
+
+    def retrieve(self, request, *args, **kwargs):
+        self.serializer_class = PostDetailSerializer
+        return super().retrieve(request, *args, **kwargs)
+
